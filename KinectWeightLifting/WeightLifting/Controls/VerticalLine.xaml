@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WeightLifting.Controls.VerticalLine"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeightLifting.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Path Grid.Row="0" Fill="#0EB245" Stretch="Uniform" Data="M46.34,39.003 46.34,39.003 24.846,60.499 29.007,64.657 50.502,43.163 71.015,63.677 75.175,59.519 50.502,34.844" />
+        <Path Grid.Row="2" Fill="#0EB245" Stretch="Uniform" Data="M53.681,60.497 53.681,60.497 75.175,39.001 71.014,34.843 49.519,56.337 29.006,35.823 24.846,39.982   49.519,64.656" />
+        <Rectangle Grid.Row="1" Fill="#0EB245" Width="5" Margin="0,-24" />
+        <Border Grid.Row="1" Background="#0EB245" CornerRadius="14" Padding="14,5" VerticalAlignment="Center">
+            <TextBlock FontSize="40" Padding="12,8" Foreground="White">
+                <Run Name="tblDistanceY" FontWeight="Bold" Text="0.00" />m
+            </TextBlock>
+        </Border>
+    </Grid>
+</UserControl>
