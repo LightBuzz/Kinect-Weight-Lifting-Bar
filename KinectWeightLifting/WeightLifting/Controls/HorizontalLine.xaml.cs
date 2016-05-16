@@ -29,6 +29,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WeightLifting.Controls
@@ -41,6 +42,22 @@ namespace WeightLifting.Controls
         public HorizontalLine()
         {
             InitializeComponent();
+
+            DataContext = this;
         }
+
+        public double Angle
+        {
+            get
+            {
+                return (double)GetValue(AngleProperty);
+            }
+            set
+            {
+                SetValue(AngleProperty, value);
+            }
+        }
+        public static readonly DependencyProperty AngleProperty =
+            DependencyProperty.Register("Angle", typeof(double), typeof(HorizontalLine), new FrameworkPropertyMetadata(0.0));
     }
 }

@@ -49,7 +49,7 @@ namespace LightBuzz.Vitruvius
         /// <returns>The angle, in degrees.</returns>
         public static double Angle(this CameraSpacePoint center, CameraSpacePoint start, CameraSpacePoint end)
         {
-            Vector3D first = new Vector3D(start.X, start.Y, start.X) - new Vector3D(center.X, center.Y, center.Z);
+            Vector3D first = new Vector3D(start.X, start.Y, start.Z) - new Vector3D(center.X, center.Y, center.Z);
             Vector3D second = new Vector3D(end.X, end.Y, end.Z) - new Vector3D(center.X, center.Y, center.Z);
 
             return Vector3D.AngleBetween(first, second);

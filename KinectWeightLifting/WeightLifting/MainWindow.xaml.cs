@@ -134,13 +134,13 @@ namespace WeightLifting
                     {
                         bodyFrame.GetAndRefreshBodyData(_bodyData);
 
-                        _body = _bodyData.Where(b => b.IsTracked).OrderBy(b => b.Joints[JointType.SpineBase].Position.Z).FirstOrDefault();
+                        _body = _bodyData.Where(b => b.IsTracked).FirstOrDefault();
 
                         if (_body != null)
                         {
                             float distance = _body.Joints[JointType.SpineBase].Position.Z;
 
-                            if (distance < 2.0)
+                            if (distance < 1.5)
                             {
                                 sensorInfo.Visibility = Visibility.Visible;
                                 sensorInfo.Text = "MOVE BACKWARDS";
@@ -194,6 +194,7 @@ namespace WeightLifting
                     // Bar line
                     horizontalLine.Visibility = Visibility.Visible;
                     horizontalLine.Width = Math.Abs(colorPointMax.X - colorPointMin.X);
+                    horizontalLine.Angle = e.Angle;
 
                     Canvas.SetLeft(horizontalLine, colorPointMin.X);
                     Canvas.SetTop(horizontalLine, colorPointTrail.Y - horizontalLine.ActualHeight / 2.0);

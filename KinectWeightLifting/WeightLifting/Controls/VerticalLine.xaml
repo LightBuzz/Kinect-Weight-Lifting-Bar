@@ -17,7 +17,7 @@
         <Rectangle Grid.Row="1" Fill="#0EB245" Width="5" Margin="0,-24" />
         <Border Grid.Row="1" Background="#0EB245" CornerRadius="14" Padding="14,5" VerticalAlignment="Center">
             <TextBlock FontSize="40" Padding="12,8" Foreground="White">
-                <Run Name="tblDistanceY" FontWeight="Bold" Text="0.00" />m
+                <Run Name="tblDistanceY" FontWeight="Bold" Text="{Binding Text}" />m
             </TextBlock>
         </Border>
     </Grid>

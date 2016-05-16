@@ -20,6 +20,6 @@
                 </Canvas>
             </Grid>
         </Viewbox>
-        <Controls:SensorInfo x:Name="sensorInfo" Width="480" Height="180" />
+        <Controls:SensorInfo x:Name="sensorInfo" Width="480" Height="180" Visibility="Collapsed" />
     </Grid>
 </Window>

@@ -10,6 +10,6 @@
         <Border.Background>
             <SolidColorBrush Color="White" Opacity="0.85" />
         </Border.Background>
-        <TextBlock Foreground="Green" FontSize="40" FontWeight="Black" Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Foreground="Green" FontSize="40" FontWeight="Black" Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Border>
 </UserControl>

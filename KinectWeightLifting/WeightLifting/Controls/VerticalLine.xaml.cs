@@ -42,6 +42,8 @@ namespace WeightLifting.Controls
         public VerticalLine()
         {
             InitializeComponent();
+
+            DataContext = this;
         }
 
         public string Text
@@ -56,6 +58,6 @@ namespace WeightLifting.Controls
             }
         }
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(VerticalLine), new FrameworkPropertyMetadata(""));
+            DependencyProperty.Register("Text", typeof(string), typeof(VerticalLine), new FrameworkPropertyMetadata("0.00"));
     }
 }

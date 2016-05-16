@@ -37,14 +37,7 @@ namespace BarDetection
 {
     public class BarDetectionEngine
     {
-        private readonly double HEIGHT_ADD = 0.03;
-
-        private Smoother _smootherMinimumX = new Smoother();
-        private Smoother _smootherMinimumY = new Smoother();
-        private Smoother _smootherMaximumX = new Smoother();
-        private Smoother _smootherMaximumY = new Smoother();
-        private Smoother _angleSmoother = new Smoother();
-        private Smoother _angleSmoother2 = new Smoother();
+        private readonly double HEIGHT_DIFFERENCE = 0.03;
 
         private DepthSpacePoint[] _depthPoints = null;
 
@@ -170,11 +163,6 @@ namespace BarDetection
                 ColorSpacePoint colorMinimum = CoordinateMapper.MapDepthPointToColorSpace(depthMinimum, minimumDistance);
                 ColorSpacePoint colorMaximum = CoordinateMapper.MapDepthPointToColorSpace(depthMaximum, maximumdistance);
 
-                colorMinimum.X = (float)_smootherMinimumX.Smooth(colorMinimum.X, true);
-                colorMinimum.Y = (float)_smootherMinimumY.Smooth(colorMinimum.Y, true);
-                colorMaximum.X = (float)_smootherMaximumX.Smooth(colorMaximum.X, true);
-                colorMaximum.Y = (float)_smootherMaximumY.Smooth(colorMaximum.Y, true);
-
                 CameraSpacePoint cameraTrail = new CameraSpacePoint
                 {
                     X = (cameraMinimum.X + cameraMaximum.X) / 2f,
@@ -211,16 +199,19 @@ namespace BarDetection
                 barLength = cameraMinimum.Length(cameraMaximum);
                 barHeight = cameraTrail.Length(projection);
 
-                angle = cameraMinimum.Angle(cameraMaximum, new CameraSpacePoint { X = cameraMaximum.X, Y = cameraMinimum.Y, Z = cameraMaximum.Z });
+                angle = cameraMinimum.Angle(cameraMaximum, new CameraSpacePoint { X = cameraMaximum.X, Y = cameraMinimum.Y, Z = (cameraMaximum.Z + cameraMinimum.Z) / 2f });
                 
                 if (angle > 180.0)
                 {
                     angle = 360.0 - angle;
                 }
 
-                angle = _angleSmoother.Smooth(angle, true);
+                if (cameraMinimum.Y < cameraMaximum.Y)
+                {
+                    angle = -angle;
+                }
 
-                if (barLength > handLength && angle < 25.0)
+                if (barLength > handLength)
                 {
                     BarDetectionResult result = new BarDetectionResult
                     {
@@ -242,15 +233,12 @@ namespace BarDetection
                             ColorPoint = colorTrail,
                             DepthPoint = depthTrail
                         },
-                        BarHeight = barHeight + HEIGHT_ADD,
+                        BarHeight = barHeight + HEIGHT_DIFFERENCE,
                         BarLength = barLength,
                         Angle = angle
                     };
 
-                    if (BarDetected != null)
-                    {
-                        BarDetected(this, result);
-                    }
+                    BarDetected?.Invoke(this, result);
                 }
             }
         }

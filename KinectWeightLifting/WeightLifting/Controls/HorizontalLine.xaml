@@ -5,6 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WeightLifting.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="300">
+             d:DesignHeight="80" d:DesignWidth="300"
+             RenderTransformOrigin="0.5,0.5">
+    <UserControl.RenderTransform>
+        <RotateTransform Angle="{Binding Angle}" />
+    </UserControl.RenderTransform>
+    
     <Rectangle Stroke="#0EB245" StrokeThickness="10" Height="80" />
 </UserControl>
