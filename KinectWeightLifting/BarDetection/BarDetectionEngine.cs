@@ -211,7 +211,7 @@ namespace BarDetection
                     angle = -angle;
                 }
 
-                if (barLength > handLength)
+                if (barLength > handLength && Math.Abs(angle) < 25.0)
                 {
                     BarDetectionResult result = new BarDetectionResult
                     {
